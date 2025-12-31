@@ -411,3 +411,186 @@ and return value er type age theke likhe deoyake
 Type Annotation bole.
 
 */ 
+
+
+// Generics:
+/*
+TypeScript a function ba class k amnvabe lekha
+ jate eta jekono type er sathe kaj korte pare.
+  kintu type safety bojai thake - eke Generics bole.
+
+
+syntax: 
+function functionName<T>(arg: T): T {
+    return arg;
+}
+*/ 
+
+// Example:
+function logAnything<T>(arg: T): T {
+    console.log(arg);
+    return arg;
+}
+
+// usage
+logAnything('hello'); // T = string
+logAnything(33); //  T = number
+logAnything([1, 2, 3]); // T = number
+
+
+/*
+why use:
+code reuse kora jai
+any use korte hoi na 
+type safty bojai thake
+runntime error kome
+ekoi function barbar use kora jai
+
+
+
+any = typescript
+generics = flexible + safe
+
+"Generics lets us write reusable and 
+type-safe code."
+
+Generics keno any theke valo?
+any-
+type safety nai
+error dhora pore na 
+risky
+
+generics - 
+type safe
+compile time error
+safe
+*/
+
+// Example full code
+// only for string
+function logString(arg: string): string {
+    console.log(arg);
+    return arg;
+}
+logString("logged id"); // work only for string
+
+// another function for number
+function logNumber(arg: number): number {
+    console.log(arg);
+    return arg;
+}
+logNumber(3); // 3
+
+
+// again a another function for array
+function logArray (arg: any[]): any[]{
+    console.log(arg);
+    return arg;
+}
+
+logArray([4,4,4,3,5]); // [4,4,4,3,5]
+
+/*
+any usses korle ki problem
+typescript r type check korche na.
+any mane typescript k andho kore deoya.
+akhanei generics dorkar.
+*/ 
+function logAnythings(arg: any): any {
+    console.log(arg);
+    return arg; 
+}
+logAnythings('hello');
+logAnythings(74);
+logAnythings([1, 2, 4]);
+
+
+// solution: Generics use kora 
+function logAnythingss<T>(arg: T): T {
+    console.log(arg);
+    return arg; 
+}
+// string
+logAnythingss("hello"); // T = string
+// number
+logAnythingss(43); // T = number
+// array
+logAnythingss([3, 4]); // T = array 
+
+
+// explict type o deoya jai optional
+logAnythingss<number[]>([1, 2, 3]); // [ 1, 2, 3 ]
+// kintu sadharonoto dorkar hoina typescript nijei in fer kore nei.
+
+
+
+
+/*
+Generics with constraint (extends) example: 
+typescript a generics er sathe jodi kono nirdisto 
+property thaka badhootamulo korahoi, take generic 
+contraint bole.
+
+
+
+syntax:
+function functionName<T extends IterfaceName>(age: T[]): T
+*/ 
+
+// example: 
+interface HasAge {
+    age: number;
+}
+
+function getOldest<T extends HasAge>(people: T[]): T{
+    return people.sort((a, b) => b.age - a.age)[0];
+}
+
+// usage
+const peoples = [{age: 30}, {age: 40}];
+getOldest(peoples).age;
+
+/*
+why use:
+generics + type safety
+resuable function
+type assertion dorkar hoina
+cleaner code
+*/
+
+
+// full code of example
+// step 1: common interfec
+interface HerAge{
+    age: number;
+}
+
+// step 2: generics function with constraint
+function getOldAge<T extends HerAge>(people: T[]): T {
+    return people.sort((a, b) =>  b.age - a.age)[0];
+}
+
+// step 3: simple age only objects
+const people: HerAge[] = [
+    {age: 30},
+    {age: 40},
+    {age: 50}
+];
+const oldestPerson = getOldAge(people);
+console.log(oldestPerson.age); // 50
+
+// step 4:  more complex objects
+interface Player {
+    name: string;
+    age: number;
+};
+const players: Player[] = [
+    {name: 'John', age: 30},
+    {name: 'Jane', age: 35},
+    {name: 'Joe', age: 18},
+];
+
+const oldestPlayer = getOldAge(players);
+console.log(oldestPlayer.name); // Jane
+console.log(oldestPlayer.age) // 35
+
