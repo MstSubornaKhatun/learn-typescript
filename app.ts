@@ -640,43 +640,142 @@ API call a generics khub beshi use hoi
 
 
 
-//full code 
-// post interface
-interface IPost {
-    id: number;
-    title: string;
-    description: string;
+// //full code 
+// // post interface
+// interface IPost {
+//     id: number;
+//     title: string;
+//     description: string;
+// }
+
+// // user interface
+// interface IUser {
+//     id: number;
+//     name: string;
+//     age: number;
+// }
+
+// // generics fetch function 
+// const fetchData = async<ResultType>(path: string):
+// Promise<ResultType> => {
+//     const response = await
+//     fetch(`http://example.com${path}`);
+//     return response.json();
+// };
+
+
+
+// // Using the generic function
+// (async () => {
+//     const posts = await fetchData<IPost[]>('/posts');
+//         console.log(posts[0].title);
+//         console.log(posts[0].description);
+
+
+//     const users = await fetchData<IUser[]>('/users');
+//         console.log(users[0].name);
+//         console.log(users[0].age);
+    
+// })();
+
+
+
+
+/*
+Structural typing/Duck typing:
+kono object er nam ba type na dekhe, 
+tar property o structure dekhe type thik kora
+*/
+
+
+// example:
+interface ICredential {
+    username: string;
+    password: string;
+    isAdmin: boolean;
 }
 
-// user interface
-interface IUser {
-    id: number;
-    name: string;
-    age: number;
-}
+function login (credentials: ICredential): boolean {
+    console.log(credentials);
+    return true;
+} 
 
-// generics fetch function 
-const fetchData = async<ResultType>(path: string):
-Promise<ResultType> => {
-    const response = await
-    fetch(`http://example.com${path}`);
-    return response.json();
+const user = {
+    username: 'suborna',
+    password: 'secret',
+    isAdmin: true
 };
 
+login(user); // { username: 'suborna', password: 'secret', isAdmin: true }
 
 
-// Using the generic function
-(async () => {
-    const posts = await fetchData<IPost[]>('/posts');
-        console.log(posts[0].title);
-        console.log(posts[0].description);
+/*
+ekhane user variable ta explicitly ICredential 
+type na hole typescript error dei na.
+
+karon --
+    user object er vitore ache
+        usernaem: string
+        password: string
+
+agulo ICredential interface er sathe match korche.
 
 
-    const users = await fetchData<IUser[]>('/users');
-        console.log(users[0].name);
-        console.log(users[0].age);
+
+# jodi object er property interface er moto hoi. 
+tahole typescript setake sei interface er type mone kore.
+
+
+
+
+why it works: 
+Typescript dekhe,
+    object er shape/structure
+    property nam + type match korche
+
+typescript dekhena,
+    variable er naam
+    exact interface declare kora ache kina
     
-})();
+    
 
+why use structural typing: 
+    code beshi fexible hoi
+    ekoi structure thakle resue kora jai
+    kom boilerplate likhte hoi
+    javascript er sathe natural vabe kaj kore
+
+*/
+
+// interface IAuth {
+//     username: string;
+//     password: string;
+//     login(username: string, password: string): boolean;
+
+// }
+
+// const auth = {
+//     username: 'coderbhai',
+//     password: 'secret',
+//     login(username: string, password: string): boolean {
+//         return true;
+//     }
+// }
+
+
+
+
+// type annotation ---> type likhi
+// type interface ---> typescript type bujhe nei.
+
+
+/*
+typescript a jokhon amra type na likhe o value dekhe
+type bujhe nei, take type interface bole.
+*/ // example:
+
+let naam = 'Rahim'; // string
+let age = 20; // number
+let isActive = true; // boolean 
 
 
