@@ -779,3 +779,29 @@ let age = 20; // number
 let isActive = true; // boolean 
 
 
+// TypeScript Configuration
+/*
+open terminal/cmd:
+lern-typescipt> tsc --help
+ata korle kichu COMMON COMMANDS paoya jabe. ata ekta docs er motoi.
+
+
+
+typescript comppiler (tsc) k bola:
+ - kivabe code compile korbe
+ - kon file nebe
+ - kon rules follow korbe
+
+
+ ei configaration sadharonoto thake tsconfig.json
+  file a. ekhane compiler ke rule deoya hoi.
+
+
+lern-typescipt> tsc --init
+akhane config gulo deoya thake
+
+--> open typescript docs then open TSConfig Reference
+
+
+  
+*/
