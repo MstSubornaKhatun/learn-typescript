@@ -594,3 +594,89 @@ const oldestPlayer = getOldAge(players);
 console.log(oldestPlayer.name); // Jane
 console.log(oldestPlayer.age) // 35
 
+
+console.log('------------------')
+/*
+generics diye api fetch kora - example
+generics use kore emn funcction lekha jeta 
+jekono tye er data fech krte pare and type 
+safety bojai rakhe.
+
+
+syntax: 
+const fetchData = async <T>(path: string): Promise<T> => {
+    return response.join();
+    
+    
+    }
+
+
+// example
+    interface IUser {
+        id: number;
+        name: string;
+        age: number;
+    }
+    const users = await fetchData<IUser[]>('/users');
+    
+// explatation:
+T holo generic type
+fuunction call korar somoi T thik hoi 
+return type Promise<T>
+
+
+
+why use?
+same function diye API call
+any use korte hoi na
+auto suggestion paoya jai
+safer code
+
+****
+generics ==> flexible function + strict type
+API call a generics khub beshi use hoi
+*/ 
+
+
+
+
+//full code 
+// post interface
+interface IPost {
+    id: number;
+    title: string;
+    description: string;
+}
+
+// user interface
+interface IUser {
+    id: number;
+    name: string;
+    age: number;
+}
+
+// generics fetch function 
+const fetchData = async<ResultType>(path: string):
+Promise<ResultType> => {
+    const response = await
+    fetch(`http://example.com${path}`);
+    return response.json();
+};
+
+
+
+// Using the generic function
+(async () => {
+    const posts = await fetchData<IPost[]>('/posts');
+        console.log(posts[0].title);
+        console.log(posts[0].description);
+
+
+    const users = await fetchData<IUser[]>('/users');
+        console.log(users[0].name);
+        console.log(users[0].age);
+    
+})();
+
+
+
