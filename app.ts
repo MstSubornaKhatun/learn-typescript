@@ -332,4 +332,82 @@ console.log('-------------')
 /*
 Primitive type caile --> type alias use koro
 object structure caile ---> interface use koro
+
+
+
+interface extend korte hole sob somoi object type hote hobe.
+
 */
+// type SanitizedString = string;
+// type EvenNumber = number; 
+// interface SanitizedString extends string {
+//     //.......
+// }
+/*
+error: interface object type ba interface type
+extend korte pare. kintu ekhane string primitive 
+type extends korte ---> typescript support kore na.
+
+
+
+primitive type extends kora possible na
+ primitive type : string, number, boolean
+ agulo object noi, only valu type
+ tai interface string na number extend korte parbe na
+
+
+
+primitive type extend korar solution
+ Typescript a primitive extend korte type alias +
+ Intersection use korte hoi.
+*/
+type SanitizedString = string & { __sanitized: true}; 
+
+// akhn aata branded type.
+// eta interface niye kora jai na
+
+
+/* Union Type:
+Union type mane ekta variable ba parameter 
+ekaathik type hote pare. symble --> | (pipe)
+
+
+Type Narrowing:
+typeof diye type check kora
+string hole string method use kora
+*/ 
+
+
+// union type 
+type IdCard = number | string;
+// function
+function printId(id: IdCard){
+    if(typeof id === 'string'){
+        console.log(id.toUpperCase());
+    } else {
+        console.log(id);
+    }
+}
+// function call
+printId('hello'); // HELLO
+printId(1234); // 1234
+console.log('------------')
+
+
+
+
+// example
+function getFirstThres(x: string | number[]): string | number[] {
+    return x.slice(0, 3);
+}
+// string dile
+console.log(getFirstThres("hello")); // hel
+// number dile
+console.log(getFirstThres([1, 2, 3, 4, 5])); // [ 1, 2, 3 ]
+
+/*
+TypeScript a variable ba function er parameters
+and return value er type age theke likhe deoyake
+Type Annotation bole.
+
+*/ 

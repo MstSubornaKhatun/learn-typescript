@@ -66,4 +66,26 @@ var books = {
     price: 1200,
     size: 45
 };
-console.log(books);
+console.log(books); // { name: 'Atomtic Habit', price: 1200, size: 45 }
+console.log('-------------');
+// function
+function printId(id) {
+    if (typeof id === 'string') {
+        console.log(id.toUpperCase());
+    }
+    else {
+        console.log(id);
+    }
+}
+// function call
+printId('hello'); // HELLO
+printId(1234); // 1234
+console.log('------------');
+// example
+function getFirstThres(x) {
+    return x.slice(0, 3);
+}
+// string dile
+console.log(getFirstThres("hello")); //
+// number dile
+console.log(getFirstThres([1, 2, 3, 4, 5])); //
